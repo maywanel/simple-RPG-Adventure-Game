@@ -1,0 +1,135 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RPG Adventure Game"
+        x:Class="RPGInventoryGUI.MainWindow"
+        Width="1500" Height="700"
+        MinWidth="800" MinHeight="600">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+
+        <!-- Player Info Header -->
+        <Border Grid.Row="0" Background="DarkGreen" Padding="10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock x:Name="PlayerNameText" Text="Hero" Foreground="White" FontWeight="Bold" FontSize="16"/>
+                    <TextBlock x:Name="PlayerLevelText" Text="Level 1" Foreground="LightGray"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock x:Name="HealthText" Text="Health: 100/100" Foreground="Red" FontWeight="Bold"/>
+                    <TextBlock x:Name="ArmorText" Text="Armor: 50/50" Foreground="SteelBlue" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock x:Name="StatsText" Text="Str: 10 | Agi: 10" Foreground="Yellow"/>
+                    <TextBlock x:Name="ExperienceText" Text="XP: 0/100" Foreground="LightGreen"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="3">
+                    <TextBlock x:Name="GoldText" Text="Gold: 50" Foreground="Gold" FontWeight="Bold" FontSize="14"/>
+                    <TextBlock x:Name="FloorText" Text="Floor: 1" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Game Area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Game Content -->
+            <Border Grid.Column="0" Background="{DynamicResource ExpGradientColor}" Padding="10" Margin="0,0,5,0">
+                <StackPanel x:Name="GameContentPanel">
+                    <!-- Exploring Mode -->
+                    <StackPanel x:Name="ExploringPanel">
+                        <TextBlock Text="🏰 Adventure Awaits!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20"/>
+                        <TextBlock Text="What would you like to do?" FontSize="16" HorizontalAlignment="Center" Margin="0,10"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                            <Button x:Name="ExploreButton" Content="🗡️ Find Enemy" Width="120" Height="30" Margin="10" Click="ExploreButton_Click"/>
+                            <Button x:Name="RestButton" Content="💤 Rest" Width="120" Height="30" Margin="10" Click="RestButton_Click"/>
+                            <Button x:Name="ShopButton" Content="🏪 Shop" Width="120" Height="30" Margin="10" Click="ShopButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Combat Mode -->
+                    <StackPanel Background="{DynamicResource CombatGradientColor}" x:Name="CombatPanel" IsVisible="False" Spacing="10">
+                        <TextBlock x:Name="EnemyNameText" Text="Enemy" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="EnemyHealthText" Text="Health: 100/100" Foreground="Red" HorizontalAlignment="Center" Margin="0,5"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                            <Button x:Name="AttackButton" Content="⚔️ Attack" Height="30" Margin="5" Click="AttackButton_Click"/>
+                            <Button x:Name="UseItemButton" Content="🧪 Use Item" Height="30" Margin="5" Click="UseItemButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Shop Mode -->
+                    <StackPanel Background="{DynamicResource ShopGradientColor}" x:Name="ShopPanel" IsVisible="False" Spacing="10">
+                        <TextBlock Text="🏪 Merchant's Shop" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"/>
+                        <ListBox x:Name="ShopItemsList" Height="200" Margin="0,10" SelectionChanged="ShopItemsList_SelectionChanged"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                            <Button x:Name="BuyButton" Content="💰 Buy"  Margin="5" Click="BuyButton_Click" IsEnabled="False"/>
+                            <Button x:Name="LeaveShopButton" Content="🚪 Leave"  Margin="5" Click="LeaveShopButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Rest Mode -->
+                    <StackPanel Background="{DynamicResource RestGradientColor}" x:Name="RestPanel" IsVisible="False" Spacing="10">
+                        <TextBlock Text="💤 Resting Area" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"/>
+                        <TextBlock Text="Recover your health and prepare for your next adventure." HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,15"/>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                            <Button x:Name="RegularRestButton" Content="🛌 Rest Normally" Height="40" Margin="5" Click="RegularRestButton_Click"/>
+                            <Button x:Name="SpeedRestButton" Content="⚡ Speed Rest (20 Gold)" Height="40" Margin="5" Click="SpeedRestButton_Click"/>
+                        </StackPanel>
+                        
+                        <Button x:Name="LeaveRestButton" Content="🚪 Return to Adventure" HorizontalAlignment="Center" Margin="0,15,0,0" Click="LeaveRestButton_Click"/>
+                    </StackPanel>
+                    
+                    <!-- Game Over -->
+                    <StackPanel x:Name="GameOverPanel" IsVisible="False">
+                        <TextBlock x:Name="GameOverText" Text="Game Over!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Red" Margin="0,20"/>
+                        <Button x:Name="RestartButton" Content="🔄 New Game" HorizontalAlignment="Center" Click="RestartButton_Click"/>
+                    </StackPanel>
+                    <StackPanel x:Name="GameFinishedPanel" IsVisible="False">
+                        <TextBlock x:Name="FinishGameText" Text="🏁 Game Finished! Thanks for playing!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gold" Margin="0,20"/>
+                        <Button x:Name="Restart" Content="🔄 New Game" HorizontalAlignment="Center" Click="RestartButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Inventory Panel -->
+            <Border Grid.Column="1" Background="{DynamicResource InvGradientColor}" Padding="20" Margin="5,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="🎒 Inventory" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="200">
+                        <ListBox x:Name="InventoryList" Background="Gray" SelectionChanged="InventoryList_SelectionChanged"/>
+                    </ScrollViewer>
+                    <Button x:Name="UseInventoryItemButton" Content="Use Selected Item" Width="150" Height="30" Margin="0,10" Click="UseInventoryItemButton_Click" IsEnabled="False"/>
+                    <TextBlock x:Name="ItemDescriptionText" Text="" Foreground="LightGray" TextWrapping="Wrap" Margin="0,10"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Combat Log -->
+        <Border Grid.Row="2" Background="Black" Padding="10" Margin="0,10,0,0">
+            <ScrollViewer>
+                <TextBlock x:Name="CombatLogText" Text="Welcome to the RPG Adventure!" Foreground="LightGreen" FontFamily="Consolas" TextWrapping="Wrap" />
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>

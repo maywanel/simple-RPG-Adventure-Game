@@ -1,0 +1,34 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="RPGInventoryGUI.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.Styles>
+        <FluentTheme />
+        <StyleInclude Source="./styles/GameDefaultStyle.axaml"></StyleInclude>
+    </Application.Styles>
+    <Application.Resources>
+        <SolidColorBrush x:Key="PrimaryColor" Color="#11002a"/>
+        <LinearGradientBrush x:Key="InvGradientColor" StartPoint="0%,0%" EndPoint="100%,0%">
+            <GradientStop Color="#22004d" Offset="0"/>
+            <GradientStop Color="#33007a" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ExpGradientColor" StartPoint="0%,0%" EndPoint="100%,0%">
+            <GradientStop Color="#333333" Offset="0"/>
+            <GradientStop Color="DarkGray" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="ShopGradientColor" StartPoint="0%,0%" EndPoint="100%,0%">
+            <GradientStop Color="#4d4d4d" Offset="0"/>
+            <GradientStop Color="#666666" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="CombatGradientColor" StartPoint="0%,0%" EndPoint="100%,0%">
+            <GradientStop Color="#530000" Offset="0"/>
+            <GradientStop Color="#ff5353" Offset="1"/>
+        </LinearGradientBrush>
+        <LinearGradientBrush x:Key="RestGradientColor" StartPoint="0%,0%" EndPoint="100%,0%">
+            <GradientStop Color="#003300" Offset="0"/>
+            <GradientStop Color="#006600" Offset="1"/>
+        </LinearGradientBrush>
+    </Application.Resources>
+</Application>
