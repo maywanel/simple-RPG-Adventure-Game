@@ -58,7 +58,6 @@
                     <StackPanel x:Name="ExploringPanel">
                         <TextBlock Text="🏰 Adventure Awaits!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20"/>
                         <TextBlock Text="What would you like to do?" FontSize="16" HorizontalAlignment="Center" Margin="0,10"/>
-
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
                             <Button x:Name="ExploreButton" Content="🗡️ Find Enemy" Width="120" Height="30" Margin="10" Click="ExploreButton_Click"/>
                             <Button x:Name="RestButton" Content="💤 Rest" Width="120" Height="30" Margin="10" Click="RestButton_Click"/>
@@ -70,7 +69,6 @@
                     <StackPanel Background="{DynamicResource CombatGradientColor}" x:Name="CombatPanel" IsVisible="False" Spacing="10">
                         <TextBlock x:Name="EnemyNameText" Text="Enemy" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
                         <TextBlock x:Name="EnemyHealthText" Text="Health: 100/100" Foreground="Red" HorizontalAlignment="Center" Margin="0,5"/>
-
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
                             <Button x:Name="AttackButton" Content="⚔️ Attack" Height="30" Margin="5" Click="AttackButton_Click"/>
                             <Button x:Name="UseItemButton" Content="🧪 Use Item" Height="30" Margin="5" Click="UseItemButton_Click"/>
@@ -91,12 +89,10 @@
                     <StackPanel Background="{DynamicResource RestGradientColor}" x:Name="RestPanel" IsVisible="False" Spacing="10">
                         <TextBlock Text="💤 Resting Area" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"/>
                         <TextBlock Text="Recover your health and prepare for your next adventure." HorizontalAlignment="Center" TextWrapping="Wrap" Margin="0,5,0,15"/>
-                        
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
                             <Button x:Name="RegularRestButton" Content="🛌 Rest Normally" Height="40" Margin="5" Click="RegularRestButton_Click"/>
                             <Button x:Name="SpeedRestButton" Content="⚡ Speed Rest (20 Gold)" Height="40" Margin="5" Click="SpeedRestButton_Click"/>
                         </StackPanel>
-                        
                         <Button x:Name="LeaveRestButton" Content="🚪 Return to Adventure" HorizontalAlignment="Center" Margin="0,15,0,0" Click="LeaveRestButton_Click"/>
                     </StackPanel>
                     
@@ -117,10 +113,10 @@
                 <StackPanel>
                     <TextBlock Text="🎒 Inventory" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Margin="0,0,0,10"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="200">
-                        <ListBox x:Name="InventoryList" Background="Gray" SelectionChanged="InventoryList_SelectionChanged"/>
+                        <ListBox x:Name="InventoryList" Background="DarkGray" SelectionChanged="InventoryList_SelectionChanged"/>
                     </ScrollViewer>
                     <Button x:Name="UseInventoryItemButton" Content="Use Selected Item" Width="150" Height="30" Margin="0,10" Click="UseInventoryItemButton_Click" IsEnabled="False"/>
-                    <TextBlock x:Name="ItemDescriptionText" Text="" Foreground="LightGray" TextWrapping="Wrap" Margin="0,10"/>
+                    <TextBlock x:Name="ItemDescriptionText" Text="" Foreground="LightBlue" TextWrapping="Wrap" Margin="0,10"/>
                 </StackPanel>
             </Border>
         </Grid>
